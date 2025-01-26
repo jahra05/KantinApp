@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { data, useNavigate } from "react-router-dom"
+import { getOrder } from "../api"
 
 
-export default function Bayar({ formatRupiah, totalBarang, resetProducts}) {
+export default function Bayar({ formatRupiah, totalBarang, resetProducts }) {
 
   const [isChacked, setIsChacked] = useState(false)
   const navigate = useNavigate()
@@ -11,17 +12,40 @@ export default function Bayar({ formatRupiah, totalBarang, resetProducts}) {
     setIsChacked(!isChacked)
   }
 
-  const handleBayar = () => {
-    if (isChacked && totalBarang > 0) {
+  const handleBayar = async () => {
+
+    const orderId = localStorage.getItem("order_id")
+    console.log("Order ID dari localStorage:", localStorage.getItem("order_id"));
+
+
+
+    if (!orderId) {
+      alert("order id tidak di temukan")
+      return;
+    }
+    const response = await getOrder({ orderId })
+
+    if (!response.error) {
+      console.log("Get order berhasil", response.data);
+      alert(`Order berhasil diambil! Order ID: ${response.data.order_id}`);
       resetProducts()
-      console.log(resetProducts)
-      navigate('/success')
-    } else if (!isChacked) {
-      alert("pilih metode oembayaran terlebih dahulu")
-    } else if (totalBarang === 0) {
-      alert("tidak ada produk untuk di bayar")
+      navigate("/success");
+
+    } else {
+      console.error("Get order gagal", response.message);
+      alert("Gagal mengambil detail pesanan. Silakan coba lagi.");
     }
   }
+
+  // if (isChacked && totalBarang > 0) {
+  //   resetProducts()
+  //   console.log(resetProducts)
+  //   navigate('/success')
+  // } else if (!isChacked) {
+  //   alert("pilih metode oembayaran terlebih dahulu")
+  // } else if (totalBarang === 0) {
+  //   alert("tidak ada produk untuk di bayar")
+  // }
 
   return (
     <>
@@ -35,7 +59,7 @@ export default function Bayar({ formatRupiah, totalBarang, resetProducts}) {
             <label className="custom-checkbox">
               <input type="checkbox" checked={isChacked} onChange={handleIsChacked} />
             </label>
-            <label>Tunai</label>
+            <label>Tunai {data.payment_status}</label>
 
             <p>berhasi : {isChacked ? 'dicentang' : 'belum di centang'}</p>
           </div>
