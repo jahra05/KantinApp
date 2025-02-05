@@ -8,27 +8,51 @@ body {
   font-family: sans-serif;
 }
 
+form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15%;
+
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+img {
+  width: 24%;
+  margin-top: 10px;
+
+}
+
 .login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  margin-top: 40px;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 40%;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+
 }
 
 .login p {
-  margin-right: 16rem;
-  line-height: 2;
+  margin-right: 80%;
   color: black;
-  font-size: 40px;
+  font-size: 24px;
   font-weight: 600;
 }
 
 .login label {
   margin-right: 12rem;
-  padding: 2px;
-  line-height: 1;
   font-size: 15px;
   color: black;
 }
@@ -37,10 +61,11 @@ body {
   margin: 10px;
   width: 295px;
   height: 44px;
-  background-color: var(--primary);
+  background-color: var(--btn2);
   border: none;
   padding-left: 8px;
   font-size: 14px;
+  border-radius: 2px;
 }
 
 input::placeholder {
@@ -56,36 +81,63 @@ input::placeholder {
   width: 150px;
   height: 40px;
   border: none;
-  background-color: var(--primary);
+  background-color: var(--btn2);
   color: black;
   cursor: pointer;
+  border-radius: 2px;
+}
+
+.login button:hover {
+  background-color: var(--btn1);
 }
 
 .produk {
   margin-top: 40px;
+  margin-left: 100px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+.produk-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .produk2 {
-  margin-right: 16rem;
+  margin-left: 40px;
   line-height: 1;
   color: black;
   font-size: 40px;
   font-weight: 600;
+  border-bottom: 1px dashed orange;
+  width: 150px;
+  padding: 4px;
 }
 
 .produk-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background-color: #e0e0e0;
   padding: 10px;
   border-radius: 2px;
-  width: 380px;
+  width: 320px;
   margin: 28px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.2s ease-in-out;
+}
+
+.produk-item:hover {
+  transform: scale(1.1);
+}
+
+.harga {
+  display: flex;
+  align-items: center;
+
 }
 
 .produk-details {
@@ -98,69 +150,116 @@ input::placeholder {
 
 .produk-btn {
   display: flex;
-  gap: 5px;
+  margin-top: 100px;
+  padding-left: 40px;
 }
 
 .produk-btn button {
-  width: 40px;
-  height: 40px;
+  height: 28px;
+  width: 24px;
   border: none;
   cursor: pointer;
   font-size: 20px;
+  padding: 4px;
   font-weight: bold;
-  border: 5px;
   color: white;
   background-color: var(--btn1);
 }
 
-.produk-btn .btn2 {
-  background-color: var(--btn2);
-  color: black;
-  font-size: 20px;
+.produk-btn p {
+  background-color: var(--btn1);
+  height: 20px;
+  width: 20px;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  margin-top: 0px;
+  text-align: center;
+  padding: 4px;
+  color: white;
+}
+
+
+
+.produk-btn button:hover {
+
+  background-color: #ccc;
 }
 
 .checkout {
-  background-color: var(--primary);
-  width: 499px;
-  height: 110px;
-  margin-top: 30px;
-  display: flex;
+  background-color: var(--btn2);
+  width: 40%;
+  height: 130px;
+  margin-top: 20%;
+  margin-left: 50%;
   border-radius: 2px;
 
 }
 
-.checkout .total {
-  flex-direction: column;
+.total {
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
   font-size: 18px;
-  padding-left: 20px;
+  padding-bottom: 0;
+  border-bottom: 1px solid;
+
 }
 
-.btn-checkout {
-  margin-left: 200px;
-  padding-top: 34px;
+
+.total p {
+  width: 100%;
+
 }
 
-.btn-checkout button {
-  width: 135px;
-  height: 48px;
-  border: none;
-  background-color: var(--btn1);
-  color: white;
+.checkout button {
+  float: right;
+  margin: 10px;
   font-size: 14px;
-  font-weight: 400;
-  border-radius: 2px;
-  cursor: pointer;
+  background-color: var(--btn1);
+  border-radius: 4px;
+  padding: 8px;
+  border: none;
+  color: var(--primary);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.checkout button:hover {
+  background-color: var(--btn2);
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+
+.btn-checkout:hover {
+  color: rgb(12, 78, 12);
 }
 
 .kasir {
   margin: 80px;
-
 }
 
 .kasir h5 {
-  padding-bottom: 24px;
+  padding-bottom: 4px;
   font-size: 24px;
+  border-bottom: 1px dashed orange;
+  width: 100px;
+}
+
+.bayar-barang,
+.payment {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  background-color: var(--btn2);
+  padding: 10px;
+}
+
+.payment-method {
+  padding-top: 10px;
+}
+
+.payment-method input {
+  cursor: pointer;
 }
 
 .bayar-barang p {
@@ -169,22 +268,23 @@ input::placeholder {
   font-weight: 400;
 }
 
-.btn-bayar {
-  background-color: var(--primary);
-  width: 394px;
-  height: 85px;
-  margin-top: 100px;
-
-}
+/*  */
 
 .btn-bayar button {
-  width: 295px;
-  height: 48px;
+  width: 200px;
+  height: 40px;
   margin-top: 20px;
-  margin-left: 49px;
+  float: right;
   border: none;
   color: white;
   background-color: var(--btn1);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-bayar button:hover {
+  background-color: var(--primary);
+  color: var(--btn1);
 }
 
 .checkbox {

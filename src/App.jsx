@@ -29,7 +29,7 @@ function App() {
           const transformedData = result.data.map(product => ({
             ...product,
             // count: 0,
-            quantity : 10
+            quantity : 0
           }));
           setProducts(transformedData);
         } else {
@@ -93,7 +93,7 @@ function App() {
 
   const resetProdukCheckout = () => {
     const resetProduk = products.map((product) => ({
-      ...product, quantity: 10,
+      ...product, quantity: 0,
     }))
     setProducts(resetProduk)
   }

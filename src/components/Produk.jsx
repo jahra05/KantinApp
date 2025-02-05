@@ -11,10 +11,14 @@ export default function Produk({ totalBarang, products, handleMins, handlePlus, 
 
 
   const handlePembayaran = async () => {
+    const buy = products.filter((a) => a.quantity !== 0).map((b) => {
+      return {
+        product_id: b.product_id,
+        quantity: b.quantity
+      }
+    })
     const data = await checkout({
-      products: [
-        { product_id: "YMTTXcd2qVse6kquUyp9", quantity: 10 }
-      ]
+      products: buy
     });
 
     if (data) {
@@ -43,20 +47,20 @@ export default function Produk({ totalBarang, products, handleMins, handlePlus, 
 
 
   return <>
+    <p className="produk2">Produk</p>
     <div className="produk">
-      <p className="produk2">Produk</p>
       <div className="produk-list">
         {products.map((product) => (
           <div className="produk-item" key={product.product_id}>
             <div className="produk-details">
-              <p className="pcs">{product.quantity}x</p>
               <p className="produk-name">{product.product_name}</p>
-              <p className="produk-price">{formatRupiah(product.product_price * product.quantity)}</p>
+              <p className="produk-price">{formatRupiah(product.product_price)}</p>
               <p className="stok-produk">stok : {product.stock}</p>
             </div>
             <div className="produk-btn">
-              <button className="btn1" onClick={() => handlePlus(product.product_id)} disabled={product.stock <= 0} >+</button>
-              <button className="btn2" onClick={() => handleMins(product.product_id)} disabled={product.stock <= 0}>-</button>
+              <button onClick={() => handlePlus(product.product_id)} disabled={product.stock <= 0} >+</button>
+              <p>  {product.quantity}</p>
+              <button onClick={() => handleMins(product.product_id)} disabled={product.stock <= 0}>-</button>
             </div>
           </div>
         ))}
@@ -66,12 +70,9 @@ export default function Produk({ totalBarang, products, handleMins, handlePlus, 
       <div className="checkout">
         <div className="total">
           <p>Total</p>
-
           <h4>{formatRupiah(totalBarang)}</h4>
         </div>
-        <div className="btn-checkout">
-          <button onClick={handlePembayaran}>Checkout</button>
-        </div>
+        <button onClick={handlePembayaran}> Checkout </button>
       </div>
     </div>
   </>

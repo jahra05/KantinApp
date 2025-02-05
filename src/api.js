@@ -103,8 +103,24 @@ const getOrder = async ({ orderId }) => {
   }
 
 }
-export { login, produkList, checkout, getOrder };
 
+const payOrder = async (params) => {
+  const response = await fetch(`http://localhost:8000/api/order/pay`, {
+    method: 'POST',
+    headers: {
+      "content-Type": "application/json"
+    },
+    body: JSON.stringify(params)
+  })
+  if (!response) {
+    console.error(response, "error")
+  }
 
+  const data = await response.json();
+  return data;
+
+}
+
+export { login, produkList, checkout, getOrder, payOrder, }
 
 
